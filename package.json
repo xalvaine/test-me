@@ -1,11 +1,11 @@
 {
-  "name": "eslint-prettier-airbnb-cra",
+  "name": "test-me",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-scripts": "3.2.0"
+    "react-scripts": "^3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -43,7 +43,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && npm test",
+      "pre-commit": "pretty-quick --staged",
       "post-merge": "npm install"
     }
   }
