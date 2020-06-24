@@ -1,0 +1,59 @@
+@import '../../assets/styles/variables';
+
+.row {
+  position: relative;
+  padding: 12px 72px 12px 24px;
+  border-top: 1px solid #ebebeb;
+
+  &::after {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+  }
+}
+
+.museum {
+  composes: row;
+
+  &::after {
+    content: url('./img/museum.svg');
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.geo {
+  composes: row;
+
+  &::after {
+    content: url('./img/geo.svg');
+    width: 18px;
+    height: 22px;
+  }
+}
+
+.title {
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.place {
+  font-size: 13px;
+  color: #979797;
+  display: block;
+}
+
+.highlightedPlace {
+  font-weight: 600;
+  font-size: 20px;
+  margin: 8px 0 13px;
+  display: block;
+}
+
+.highlighted {
+  font-weight: 600;
+  color: $purple;
+  background: none;
+}
