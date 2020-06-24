@@ -11,3 +11,10 @@
     url('../fonts/SFProDisplay-Semibold.ttf') format('truetype');
   font-weight: 600;
 }
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../fonts/SF-Pro-Display-Bold.otf') format('opentype'),
+    url('../fonts/SFProDisplay-Bold.ttf') format('truetype');
+  font-weight: 700;
+}

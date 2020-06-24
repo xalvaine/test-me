@@ -23,6 +23,24 @@
   }
 }
 
+.searchingSearchRow {
+  composes: searchRow;
+
+  &::after {
+    content: none;
+  }
+}
+
+.loader {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  color: $purple;
+  stroke-linecap: round;
+}
+
 .input {
   width: 100%;
   box-sizing: border-box;
