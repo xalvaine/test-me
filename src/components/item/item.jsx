@@ -2,28 +2,32 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Highlighter from 'react-highlight-words';
 import styles from './item.module.scss';
+import { CATEGORY } from '../../config';
 
 function Item(props) {
-  const { title, text, type, searchWords, price, currency } = props;
+  const { title, text, category, searchWords, price, currency } = props;
 
-  const typeToClass = {
-    tour: styles.row,
-    attraction: styles.attraction,
-    city: styles.city,
-    notFound: styles.row
-  };
+  const categoryToClass = {};
+  categoryToClass[CATEGORY.ATTRACTIONS] = styles.attraction;
+  categoryToClass[CATEGORY.TOURS] = styles.row;
+  categoryToClass[CATEGORY.CITIES] = styles.city;
+  categoryToClass[CATEGORY.NOT_FOUND] = styles.row;
 
   return (
-    <div className={typeToClass[type]}>
+    <div className={categoryToClass[category]}>
       <>
         <Highlighter
           highlightClassName={styles.highlighted}
-          className={type === `city` ? styles.highlightedPlace : styles.title}
+          className={
+            category === CATEGORY.CITIES
+              ? styles.highlightedPlace
+              : styles.title
+          }
           searchWords={searchWords.split(` `)}
           textToHighlight={title}
         />
         <span className={styles.place}>{text}</span>
-        {type === `tour` && (
+        {category === CATEGORY.TOURS && (
           <span className={styles.price}>{currency + price}</span>
         )}
       </>
@@ -34,7 +38,7 @@ function Item(props) {
 Item.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
-  type: PropTypes.string,
+  category: PropTypes.string,
   searchWords: PropTypes.string,
   price: PropTypes.number,
   currency: PropTypes.string
@@ -43,7 +47,7 @@ Item.propTypes = {
 Item.defaultProps = {
   title: ``,
   text: ``,
-  type: ``,
+  category: ``,
   searchWords: ``,
   price: 0,
   currency: ``

@@ -12,26 +12,9 @@
 
 .searchRow {
   position: relative;
-
-  &::after {
-    content: url('./img/search.svg');
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    top: 24px;
-    right: 24px;
-  }
 }
 
-.searchingSearchRow {
-  composes: searchRow;
-
-  &::after {
-    content: none;
-  }
-}
-
-.loader {
+.icon {
   width: 25px;
   height: 25px;
   position: absolute;
