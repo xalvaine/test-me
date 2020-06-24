@@ -64,7 +64,10 @@ function Search() {
                 return (
                   <Item
                     title={item.name}
-                    text={`${item.city.name}, ${item.country.name}`}
+                    text={
+                      (item.city ? `${item.city.name}, ` : ``) +
+                      (item.country ? item.country.name : ``)
+                    }
                     type="attraction"
                     searchWords={searchValue}
                     key={index.toString()}
