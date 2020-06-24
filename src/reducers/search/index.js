@@ -1,6 +1,10 @@
 const initialState = {
-  results: {},
-  isLoading: false
+  results: {
+    tours: [],
+    cities: [],
+    attractions: []
+  },
+  isLoading: undefined
 };
 
 const reducer = (state = initialState, action) => {

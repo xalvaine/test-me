@@ -12,7 +12,7 @@ function Search() {
   const handleChange = evt => {
     const tmp = evt.target.value;
     setSearchValue(tmp);
-    if (tmp.length >= 3) dispatch({ type: `SEARCH`, payload: tmp });
+    if (tmp.trim().length >= 3) dispatch({ type: `SEARCH`, payload: tmp });
   };
 
   return (
@@ -34,27 +34,25 @@ function Search() {
           />
         )}
       </div>
-      {results.tours &&
-      results.cities &&
-      results.attractions &&
-      !results.tours.length &&
-      !results.cities.length &&
-      !results.attractions.length &&
-      !isLoading ? (
+      {!(
+        results.tours.length ||
+        results.cities.length ||
+        results.attractions.length
+      ) && isLoading === false ? (
         <Item
           type="notFound"
           title="No results"
-          place={`It seems the are noting about “${searchValue}”`}
+          text={`It seems the are noting about “${searchValue}”`}
         />
       ) : (
         Object.keys(results).map(category =>
-          results[category].map((item, index) => {
+          results[category].slice(0, 5).map((item, index) => {
             switch (category) {
               case `tours`:
                 return (
                   <Item
                     title={item.title}
-                    place={`${item.city.name}, ${item.country.name}`}
+                    text={`${item.city.name}, ${item.country.name}`}
                     type="tour"
                     searchWords={searchValue}
                     currency={item.currency}
@@ -66,7 +64,7 @@ function Search() {
                 return (
                   <Item
                     title={item.name}
-                    place={`${item.city.name}, ${item.country.name}`}
+                    text={`${item.city.name}, ${item.country.name}`}
                     type="attraction"
                     searchWords={searchValue}
                     key={index.toString()}
@@ -75,7 +73,7 @@ function Search() {
               case `cities`:
                 return (
                   <Item
-                    place={item.name}
+                    title={item.name}
                     type="city"
                     searchWords={searchValue}
                     key={index.toString()}
