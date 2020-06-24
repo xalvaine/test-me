@@ -50,7 +50,10 @@ function Search() {
                 return (
                   <Item
                     title={item.title}
-                    text={`${item.city.name}, ${item.country.name}`}
+                    text={
+                      (item.city ? `${item.city.name}, ` : ``) +
+                      (item.country ? item.country.name : ``)
+                    }
                     type="tour"
                     searchWords={lastRequest}
                     currency={item.currency}
