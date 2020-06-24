@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: `https://app.wegotrip.com/api/v2/search/`,
-  timeout: 1000 * 5
+  timeout: 10000
 });
 
 export default api;

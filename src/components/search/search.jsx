@@ -7,7 +7,9 @@ import Item from '../item/item';
 function Search() {
   const [searchValue, setSearchValue] = useState(``);
   const dispatch = useDispatch();
-  const { isLoading, results } = useSelector(store => store);
+  const { isLoading, results, notFound, lastRequest } = useSelector(
+    store => store
+  );
 
   const handleChange = evt => {
     const tmp = evt.target.value;
@@ -34,15 +36,11 @@ function Search() {
           />
         )}
       </div>
-      {!(
-        results.tours.length ||
-        results.cities.length ||
-        results.attractions.length
-      ) && isLoading === false ? (
+      {notFound ? (
         <Item
           type="notFound"
           title="No results"
-          text={`It seems the are noting about “${searchValue}”`}
+          text={`It seems the are noting about “${lastRequest}”`}
         />
       ) : (
         Object.keys(results).map(category =>
@@ -54,7 +52,7 @@ function Search() {
                     title={item.title}
                     text={`${item.city.name}, ${item.country.name}`}
                     type="tour"
-                    searchWords={searchValue}
+                    searchWords={lastRequest}
                     currency={item.currency}
                     price={item.price}
                     key={index.toString()}
@@ -69,7 +67,7 @@ function Search() {
                       (item.country ? item.country.name : ``)
                     }
                     type="attraction"
-                    searchWords={searchValue}
+                    searchWords={lastRequest}
                     key={index.toString()}
                   />
                 );
@@ -78,7 +76,7 @@ function Search() {
                   <Item
                     title={item.name}
                     type="city"
-                    searchWords={searchValue}
+                    searchWords={lastRequest}
                     key={index.toString()}
                   />
                 );
